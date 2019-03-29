@@ -38,7 +38,7 @@ LinearProbingHashTable(int size)
     this.table = new Entry[size];
 }
 ```
-
+Hello world
 ```
 public boolean insert(K key, V value)
 {
