@@ -71,14 +71,8 @@ public class LinearProbingHashTable<K,V>
                 count++;
             }
         }
-        if (count/this.table.length >= 0.5)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        double lambda = count/this.table.length;
+        return lambda >= 0.5;
     }
 
     private void rehash()
@@ -87,11 +81,11 @@ public class LinearProbingHashTable<K,V>
         Entry<K, V> newtable[];
         newtable = new Entry[oldtable.length * 2];
         this.table = newtable;
-        for (int i = 0; i < oldtable.length; i++)
+        for (Entry<K,V> e : oldtable)
         {
-            if (oldtable[i] != null && !oldtable[i].deleted)
+            if (e != null && !e.deleted)
             {
-                insert(oldtable[i].key, oldtable[i].val);
+                insert(e.key, e.val);
             }
         }
     }
