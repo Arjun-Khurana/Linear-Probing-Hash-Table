@@ -13,9 +13,10 @@ public class hashDriver
         lpht.delete("Ligature");
         lpht.insert("Aahlad", 12);
         lpht.insert("Jonah", 6);
+        lpht.insert("Neha", 8);
 
         System.out.println(lpht.find("NotInHash"));
-        System.out.println(lpht.find("Ligature"));
+        System.out.println(lpht.find("Jonah"));
         System.out.println(lpht.getHashValue("Arjun"));
         System.out.println(lpht.getLocation("Arjun"));
         System.out.print(lpht);

@@ -5,7 +5,7 @@
 ---
 StringBuilder is used for the toString() method.
 
-```
+```java
 import java.lang.StringBuilder;
 ```
 ## Class LinearProbingHashTable
@@ -116,14 +116,11 @@ private void rehash()
     }
 }
 ```
-The getHashValue() method takes as input a key. The method calls Java's inbuilt hashCode(), mod the tablesize. If the hashCode() resulted in an integer overflow, the method adds the tablesize to the hash value.
+The getHashValue() method takes as input a key. The method calls Java's inbuilt hashCode(), mod the tablesize. If the hashCode() resulted in a negative number, the method adds the tablesize to the hash value.
 ```java
 public int getHashValue(K key)
 {
-    int h = key.hashCode();
-    // h ^= (h >>> 20) ^ (h >>> 12);
-    // h ^= (h >>> 7) ^ (h >>> 4);
-    h = h % this.table.length;
+    int h = key.hashCode() % this.table.length;
     if (h < 0)
     {
         h += this.table.length;
@@ -147,7 +144,7 @@ public int getLocation(K key)
     return -1;
 }
 ```
-The toString() method uses StringBuilder to 
+The toString() method uses StringBuilder to construct a string representation of the hash table. This is called when the print() or println() methods are called on the hash table object.
 ```java
 public String toString()
 {

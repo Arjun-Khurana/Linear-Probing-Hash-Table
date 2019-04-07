@@ -33,7 +33,7 @@ public class LinearProbingHashTable<K,V>
             rehash();
         }
         int bucket = getHashValue(key);
-        while (table[bucket] != null)
+        while (table[bucket] != null && !table[bucket].deleted)
         {
             bucket = (bucket + 1) % this.table.length;
         }
@@ -92,10 +92,7 @@ public class LinearProbingHashTable<K,V>
 
     public int getHashValue(K key)
     {
-        int h = key.hashCode();
-        // h ^= (h >>> 20) ^ (h >>> 12);
-        // h ^= (h >>> 7) ^ (h >>> 4);
-        h = h % this.table.length;
+        int h = key.hashCode() % this.table.length;
         if (h < 0)
         {
             h += this.table.length;
